@@ -1,0 +1,35 @@
+{
+  "name": "KisanChowk - Farm to Market",
+  "short_name": "KisanChowk",
+  "description": "Connects farmers and buyers through a seamless marketplace with transparent pricing, order tracking, and bulk buying for efficient agricultural trade.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1a6b3c",
+  "background_color": "#1e3d0f",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "shopping", "food"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
