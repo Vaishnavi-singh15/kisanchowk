@@ -43,7 +43,17 @@ class _CropUploadScreenState extends State<CropUploadScreen> {
   };
 
   void _proceedToAI() {
-    final qty = double.tryParse(_qtyController.text) ?? 500.0;
+    final qty = double.tryParse(_qtyController.text.trim());
+    if (qty == null || !qty.isFinite || qty <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter a valid harvest quantity greater than 0 kg'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => AIAnalysisScreen(
