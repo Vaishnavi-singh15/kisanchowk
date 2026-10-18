@@ -44,6 +44,10 @@ export default function Marketplace({ onAddToCart, cartCount, onOpenCart, onMenu
     setTimeout(() => setAdded(null), 800);
   }
 
+  const filteredProducts = PRODUCTS.filter((p) =>
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="min-h-full bg-[#f0f7f2] pb-24 ">
       {/* Status bar */}
@@ -119,10 +123,29 @@ export default function Marketplace({ onAddToCart, cartCount, onOpenCart, onMenu
       </button>
 
       {/* Products grid */}
-      <div className="px-4 grid grid-cols-2 gap-3 stagger">
-        {PRODUCTS.filter(p =>
-          p.name.toLowerCase().includes(search.toLowerCase())
-        ).map((product, idx) => {
+      {filteredProducts.length === 0 ? (
+        <div className="px-4 py-4">
+          <div className="bg-white rounded-3xl p-6 text-center shadow-sm border border-gray-100 flex flex-col items-center">
+            <div className="w-14 h-14 bg-[#e8f5ee] rounded-2xl flex items-center justify-center text-2xl mb-3">
+              🔍
+            </div>
+            <h3 className="font-bold text-gray-900 text-base mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
+              No produce found
+            </h3>
+            <p className="text-gray-500 text-xs max-w-[240px] mb-4 leading-relaxed">
+              Try searching for crops like Tomatoes, Potatoes, Onions, Rice, or Wheat.
+            </p>
+            <button
+              onClick={() => setSearch("")}
+              className="press px-4 py-2 bg-[#1a6b3c] text-white text-xs font-semibold rounded-xl transition-all shadow-sm shadow-[#1a6b3c]/30"
+            >
+              Clear Search
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="px-4 grid grid-cols-2 gap-3 stagger">
+          {filteredProducts.map((product, idx) => {
           if (idx === 2) {
             return (
               <div key={product.id} className="col-span-2 bg-white rounded-3xl overflow-hidden shadow-sm">
@@ -194,6 +217,7 @@ export default function Marketplace({ onAddToCart, cartCount, onOpenCart, onMenu
           );
         })}
       </div>
+      )}
     </div>
   );
 }
